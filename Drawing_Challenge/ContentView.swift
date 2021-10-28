@@ -29,8 +29,8 @@ struct ContentView: View {
     @State private var thickness = 3.0
     var body: some View {
         VStack {
-            Arrow(thickNess: thickness)
-               
+            Arrow()
+                .stroke(Color.black, style: StrokeStyle(lineWidth: CGFloat(thickness), lineCap: .round, lineJoin: .round))
             
             Text("Thickness : \(thickness, specifier: "%.2g")")
         Slider(value: $thickness)
@@ -46,11 +46,6 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
-
-
-
-
 
 // 1. Create an Arrow shape made from a rectangle and a triangle – having it point straight up is fine.
 // 2. Make the line thickness of your Arrow shape animatable.
