@@ -33,11 +33,10 @@ struct ContentView: View {
                 .stroke(Color.black, style: StrokeStyle(lineWidth: CGFloat(thickness), lineCap: .round, lineJoin: .round))
             
             Text("Thickness : \(thickness, specifier: "%.2g")")
-        Slider(value: $thickness)
+            Slider(value: $thickness, in: 3...15)
                 .padding()
             
         }
-        .background(Color.green)
     }
 }
 
