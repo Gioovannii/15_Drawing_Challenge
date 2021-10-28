@@ -11,24 +11,28 @@ import SwiftUI
 struct ColorCyclingRectangle: View {
     var amount = 0.0
     var steps = 100
-
+    
     var body: some View {
         ZStack {
             ForEach(0..<steps) { value in
-                Circle()
+                Rectangle()
                     .inset(by: CGFloat(value))
-                    .strokeBorder(self.color(for: value, brightness: 1), lineWidth: 2)
+                    .strokeBorder(LinearGradient(gradient: Gradient(colors: [
+                        self.color(for: value, brightness: 1),
+                        self.color(for: value, brightness: 0.5)
+                    ]), startPoint: .top, endPoint: .bottom), lineWidth: 2)
             }
         }
+//        .drawingGroup()
     }
-
+    
     func color(for value: Int, brightness: Double) -> Color {
         var targetHue = Double(value) / Double(self.steps) + self.amount
-
+        
         if targetHue > 1 {
             targetHue -= 1
         }
-
+        
         return Color(hue: targetHue, saturation: 1, brightness: brightness)
     }
 }
@@ -42,8 +46,6 @@ struct Arrow: Shape {
         path.addLine(to: CGPoint(x: 300, y: 300))
         path.addLine(to: CGPoint(x: 200, y: 100))
         
-
-        
         return path
     }
 }
@@ -51,18 +53,18 @@ struct Arrow: Shape {
 struct ContentView: View {
     @State private var thickness = 3.0
     @State private var colorCycle = 0.0
-
+    
     var body: some View {
         VStack {
             Arrow()
                 .stroke(Color.black, style: StrokeStyle(lineWidth: CGFloat(thickness), lineCap: .round, lineJoin: .round))
             
-            Rectangle()
+            ColorCyclingRectangle(amount: self.colorCycle)
                 .frame(width: 100, height: 300)
                 .border(.black, width: 3)
-                .foregroundColor(.white)
                 .offset(x: -13, y: -87)
-    
+            
+            
             Text("Thickness : \(thickness, specifier: "%.2g")")
             Slider(value: $thickness, in: 3...15)
                 .padding([.horizontal, .bottom])
@@ -80,7 +82,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
-// 1. Create an Arrow shape made from a rectangle and a triangle – having it point straight up is fine.
-// 2. Make the line thickness of your Arrow shape animatable.
-// 3. Create a ColorCyclingRectangle shape that is the rectangular cousin of ColorCyclingCircle, allowing us to control the position of the gradient using a property.
