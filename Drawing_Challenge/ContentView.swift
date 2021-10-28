@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct Arrow: Shape {
-    
-    var thickNess: CGFloat
-    
     func path(in rect: CGRect) -> Path {
         var path = Path()
         path.move(to: CGPoint(x: 200, y: 100))
