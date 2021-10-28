@@ -24,8 +24,16 @@ struct Arrow: Shape {
 struct ContentView: View {
     @State private var thickness = 0.0
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Arrow(thickNess: thickness)
+               
+            
+            Text("Thickness : \(thickness, specifier: "%.2g")")
+        Slider(value: $thickness)
+                .padding()
+            
+        }
+        .background(Color.green)
     }
 }
 
