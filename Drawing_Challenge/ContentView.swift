@@ -12,12 +12,8 @@ struct Arrow: Shape {
         var path = Path()
         
         path.move(to: CGPoint(x: 200, y: 100))
-        path.addLine(to: CGPoint(x: 100, y: 300)) // go down left
-        path.addLine(to: CGPoint(x: 160, y: 300)) // to the right
-        path.addLine(to: CGPoint(x: 160, y: 700)) // go down
-        path.addLine(to: CGPoint(x: 270, y: 700)) // turn right
-        path.addLine(to: CGPoint(x: 260, y: 300)) // go up
-        path.addLine(to: CGPoint(x: 310, y: 300))
+        path.addLine(to: CGPoint(x: 100, y: 300))
+        path.addLine(to: CGPoint(x: 300, y: 300))
         path.addLine(to: CGPoint(x: 200, y: 100))
         
 
@@ -33,6 +29,12 @@ struct ContentView: View {
             Arrow()
                 .stroke(Color.black, style: StrokeStyle(lineWidth: CGFloat(thickness), lineCap: .round, lineJoin: .round))
             
+            Rectangle()
+                .frame(width: 100, height: 300)
+                .border(.black, width: 3)
+                .foregroundColor(.white)
+                .offset(x: -13, y: -143)
+    
             Text("Thickness : \(thickness, specifier: "%.2g")")
             Slider(value: $thickness, in: 3...15)
                 .padding()
