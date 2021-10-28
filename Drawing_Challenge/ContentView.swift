@@ -22,6 +22,7 @@ struct Arrow: Shape {
 }
 
 struct ContentView: View {
+    @State private var thickness = 0.0
     var body: some View {
         Text("Hello, world!")
             .padding()
