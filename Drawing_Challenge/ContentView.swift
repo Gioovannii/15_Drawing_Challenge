@@ -18,12 +18,15 @@ struct Arrow: Shape {
         path.addLine(to: CGPoint(x: 260, y: 300)) // go up
         path.addLine(to: CGPoint(x: 310, y: 300))
         path.addLine(to: CGPoint(x: 200, y: 100))
+        
+
+        
         return path
     }
 }
 
 struct ContentView: View {
-    @State private var thickness = 0.0
+    @State private var thickness = 3.0
     var body: some View {
         VStack {
             Arrow(thickNess: thickness)
