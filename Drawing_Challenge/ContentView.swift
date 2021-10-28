@@ -11,8 +11,12 @@ struct Arrow: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         path.move(to: CGPoint(x: 200, y: 100))
-        path.addLine(to: CGPoint(x: 100, y: 300))
-        path.addLine(to: CGPoint(x: 300, y: 300))
+        path.addLine(to: CGPoint(x: 100, y: 300)) // go down left
+        path.addLine(to: CGPoint(x: 160, y: 300)) // to the right
+        path.addLine(to: CGPoint(x: 160, y: 700)) // go down
+        path.addLine(to: CGPoint(x: 270, y: 700)) // turn right
+        path.addLine(to: CGPoint(x: 260, y: 300)) // go up
+        path.addLine(to: CGPoint(x: 310, y: 300))
         path.addLine(to: CGPoint(x: 200, y: 100))
         return path
     }
