@@ -9,6 +9,8 @@ import SwiftUI
 
 struct Arrow: Shape {
     
+    var thickNess: CGFloat
+    
     
 }
 
